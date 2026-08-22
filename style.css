@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Filtres */
+.filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filters select, .filters input {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+}
+
+.filters input {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Grille des posts */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.post-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.post-card .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #e0e0e0;
+    color: #555;
+    margin: 5px 5px 5px 0;
+}
+
+.post-card .badge.niveau {
+    background: #4a90d9;
+    color: white;
+}
+
+.post-card .badge.categorie {
+    background: #50c878;
+    color: white;
+}
+
+.post-card h3 {
+    margin: 15px 0 10px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.post-card .contenu-preview {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    max-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-card .meta {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #999;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+/* Page post individuel */
+#postContent {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#postContent .date {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#postContent .contenu {
+    line-height: 1.8;
+    font-size: 16px;
+    color: #333;
+    white-space: pre-wrap;
+}
+
+#postContent .section {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #4a90d9;
+}
+
+#postContent .section h3 {
+    color: #4a90d9;
+    margin-bottom: 10px;
+}
+
+button {
+    background: #4a90d9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #357abd;
+}
