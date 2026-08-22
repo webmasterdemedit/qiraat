@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <title>Ma première page GitHub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Posts</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Bonjour le monde !</h1>
-    <p>Mon premier site est en ligne.</p>
+    <div class="container">
+        <h1>📚 Mes Posts</h1>
+        
+        <!-- Filtres -->
+        <div class="filters">
+            <select id="niveauFilter">
+                <option value="">Tous les niveaux</option>
+            </select>
+            <select id="categorieFilter">
+                <option value="">Toutes les catégories</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="🔍 Rechercher...">
+        </div>
+        
+        <!-- Liste des posts -->
+        <div id="postsList" class="posts-grid">
+            <p>Chargement des posts...</p>
+        </div>
+    </div>
+    
+    <!-- ⚠️ AJOUTEZ CETTE LIGNE ⚠️ -->
     <script src="/qiraat/script.js"></script>
 </body>
 </html>
