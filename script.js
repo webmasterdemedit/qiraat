@@ -1,7 +1,7 @@
 // ============================================================
 // CONFIGURATION
 // ============================================================
-const API_URL = 'VOTRE_URL_GOOGLE_APPS_SCRIPT'; // À remplacer !
+const API_URL = 'https://script.google.com/macros/s/AKfycbxjQMufVnpM8ZoNWNKZGkobFu75EYxYJ3rQCaFgnJ1fCpoMJpEFTFAzumoVx2bTXkkN/exec'; // À remplacer !
 
 // ============================================================
 // CHARGEMENT DES POSTS
