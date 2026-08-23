@@ -1,5 +1,9 @@
 /* ============================================================
-   STYLE DE BASE - LISEUSE ÉPURÉE
+   DESIGN LISEUSE - NOIR & BLANC AVEC MODE NUIT
+   ============================================================ */
+
+/* ============================================================
+   1. RÉINITIALISATION
    ============================================================ */
 
 * {
@@ -10,387 +14,880 @@
 
 body {
     font-family: 'Georgia', 'Times New Roman', serif;
-    background: #fafaf8;
+    background: #ffffff;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color: #1a1a1a;
-    padding: 20px;
-    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .container {
     max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 30px auto;
+    padding: 0 20px;
 }
 
-/* ===== EN-TÊTE ===== */
+/* ============================================================
+   2. MODE NUIT AUTO (DARK MODE)
+   ============================================================ */
+
+/* Active automatiquement quand l'appareil est en mode sombre */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #0d0d0d;
+        color: #e8e8e8;
+    }
+
+    .post-card {
+        background: #1a1a1a;
+        border-color: #2a2a2a;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .post-card::before {
+        background: linear-gradient(to bottom, #666666, #333333);
+    }
+
+    .post-card:hover {
+        border-color: #555555;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .post-card h3 {
+        color: #e8e8e8;
+    }
+
+    .post-card .contenu-preview {
+        color: #aaaaaa;
+    }
+
+    .post-card .meta {
+        border-top-color: #2a2a2a;
+        color: #777777;
+    }
+
+    .post-card .badge.niveau {
+        background: #e8e8e8;
+        color: #0d0d0d;
+    }
+
+    .post-card .badge.categorie {
+        background: #2a2a2a;
+        color: #cccccc;
+    }
+
+    .post-card .badge.chapitre {
+        background: #1a1a1a;
+        color: #888888;
+        border-color: #2a2a2a;
+    }
+
+    #postContent {
+        background: #1a1a1a;
+        border-color: #2a2a2a;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    #postContent h1 {
+        color: #e8e8e8;
+    }
+
+    #postContent .contenu {
+        color: #d0d0d0;
+    }
+
+    #postContent .meta .badge.niveau {
+        background: #e8e8e8;
+        color: #0d0d0d;
+    }
+
+    #postContent .meta .badge.categorie {
+        background: #2a2a2a;
+        color: #cccccc;
+    }
+
+    #postContent .meta .badge.chapitre {
+        background: #1a1a1a;
+        color: #888888;
+        border-color: #2a2a2a;
+    }
+
+    #postContent .date {
+        color: #666666;
+    }
+
+    #postContent .section {
+        background: #141414;
+        border-left-color: #555555;
+    }
+
+    #postContent .section h3 {
+        color: #e8e8e8;
+    }
+
+    #postContent .section .contenu {
+        color: #c0c0c0;
+    }
+
+    #postContent .section[style*="border-left-color: #f39c12;"] {
+        background: #141414;
+        border-left-color: #888888 !important;
+    }
+
+    #postContent .btn-retour {
+        color: #999999;
+        border-color: #2a2a2a;
+    }
+
+    #postContent .btn-retour:hover {
+        background: #2a2a2a;
+        border-color: #555555;
+        color: #e8e8e8;
+    }
+
+    .filters {
+        background: #141414;
+        border-color: #2a2a2a;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .filters select,
+    .filters input {
+        background: #1a1a1a;
+        border-color: #333333;
+        color: #e8e8e8;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    }
+
+    .filters select option {
+        background: #1a1a1a;
+        color: #e8e8e8;
+    }
+
+    .filters select:focus,
+    .filters input:focus {
+        border-color: #666666;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+    }
+
+    .filters input::placeholder {
+        color: #555555;
+    }
+
+    .quiz-question {
+        background: #141414;
+        border-color: #2a2a2a;
+    }
+
+    .quiz-question p {
+        color: #e8e8e8;
+    }
+
+    .quiz-btn {
+        background: #1a1a1a;
+        border-color: #333333;
+        color: #d0d0d0;
+    }
+
+    .quiz-btn:hover:not(:disabled) {
+        border-color: #666666;
+        background: #2a2a2a;
+    }
+
+    .quiz-btn[data-correct="true"]:disabled {
+        border-color: #555555;
+        background: #333333;
+        color: #e8e8e8;
+    }
+
+    .quiz-btn:not([data-correct="true"]):disabled {
+        border-color: #553333;
+        background: #332222;
+        color: #e8e8e8;
+    }
+
+    .quiz-feedback {
+        background: #141414;
+        color: #e8e8e8;
+    }
+
+    .question-ouverte-reponse textarea {
+        background: #1a1a1a;
+        border-color: #333333;
+        color: #e8e8e8;
+    }
+
+    .question-ouverte-reponse textarea:focus {
+        border-color: #666666;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+    }
+
+    .question-ouverte-reponse .btn-enregistrer {
+        color: #999999;
+        border-color: #333333;
+    }
+
+    .question-ouverte-reponse .btn-enregistrer:hover {
+        background: #2a2a2a;
+        border-color: #555555;
+        color: #e8e8e8;
+    }
+
+    .question-ouverte-reponse .btn-enregistrer:disabled {
+        background: #333333;
+        border-color: #333333;
+        color: #999999;
+    }
+
+    .posts-grid p {
+        color: #555555;
+    }
+
+    h1 {
+        color: #e8e8e8;
+    }
+
+    h1::after {
+        background: linear-gradient(to right, #333333, transparent);
+    }
+
+    .sous-titre {
+        color: #666666;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #141414;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #333333;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #444444;
+    }
+}
+
+/* ============================================================
+   3. STYLES DE BASE
+   ============================================================ */
+
 h1 {
-    font-size: 2rem;
+    font-family: 'Georgia', serif;
     font-weight: 700;
+    font-size: 2.2rem;
     color: #1a1a1a;
-    margin-bottom: 8px;
-    border-bottom: 2px solid #e0e0e0;
-    padding-bottom: 12px;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: color 0.3s ease;
+}
+
+h1::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, #cccccc, transparent);
+    margin-left: 15px;
+    transition: background 0.3s ease;
 }
 
 .sous-titre {
-    color: #777;
+    color: #888888;
+    font-size: 0.95rem;
     font-style: italic;
     margin-bottom: 30px;
-    font-size: 0.95rem;
+    font-family: 'Georgia', serif;
+    transition: color 0.3s ease;
 }
 
-/* ===== FILTRES ===== */
+/* ============================================================
+   4. FILTRES
+   ============================================================ */
+
 .filters {
     display: flex;
+    gap: 12px;
+    margin-bottom: 35px;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 30px;
-    background: #f5f5f5;
-    padding: 15px 18px;
-    border-radius: 10px;
+    background: #f8f8f8;
+    padding: 15px 20px;
+    border-radius: 12px;
     border: 1px solid #e8e8e8;
+    transition: all 0.3s ease;
 }
 
 .filters select,
 .filters input {
-    padding: 8px 14px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    padding: 10px 16px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
     font-size: 14px;
-    background: #fff;
-    font-family: inherit;
+    background: #ffffff;
+    font-family: 'Georgia', serif;
     color: #1a1a1a;
+    transition: all 0.3s ease;
     flex: 1;
-    min-width: 140px;
-}
-
-.filters input {
-    flex: 2;
-    min-width: 180px;
+    min-width: 150px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    cursor: pointer;
 }
 
 .filters select:focus,
 .filters input:focus {
     outline: none;
-    border-color: #888;
-    box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
+    border-color: #666666;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
-/* ===== GRILLE DES CARTES ===== */
+.filters input {
+    background-image: none;
+    flex: 2;
+    min-width: 200px;
+}
+
+.filters input::placeholder {
+    color: #bbbbbb;
+    font-style: italic;
+}
+
+/* ============================================================
+   5. GRILLE DES POSTS
+   ============================================================ */
+
 .posts-grid {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
-/* ===== CARTE D'UN POST ===== */
+/* ============================================================
+   6. CARTE D'UN POST
+   ============================================================ */
+
 .post-card {
     background: #ffffff;
-    border: 1px solid #e8e8e8;
     border-radius: 12px;
-    padding: 22px 26px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 25px 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
     cursor: pointer;
-    transition: all 0.2s ease;
+    border: 1px solid #e8e8e8;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #555555, #999999);
+    border-radius: 12px 0 0 12px;
+    transition: background 0.3s ease;
 }
 
 .post-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    border-color: #ccc;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    border-color: #cccccc;
 }
 
 .post-card .badge {
     display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
     padding: 3px 12px;
     border-radius: 20px;
-    margin-right: 6px;
-    margin-bottom: 6px;
+    font-size: 11px;
+    font-weight: 600;
     font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 3px 6px 3px 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .post-card .badge.niveau {
     background: #1a1a1a;
-    color: #fff;
+    color: #ffffff;
 }
 
 .post-card .badge.categorie {
-    background: #eaeaea;
-    color: #444;
+    background: #f0f0f0;
+    color: #444444;
+}
+
+.post-card .badge.chapitre {
+    background: #f8f8f8;
+    color: #888888;
+    border: 1px solid #e8e8e8;
 }
 
 .post-card h3 {
+    font-family: 'Georgia', serif;
     font-size: 1.3rem;
-    font-weight: 700;
-    margin: 12px 0 6px 0;
     color: #1a1a1a;
+    margin: 12px 0 8px 0;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    transition: color 0.3s ease;
 }
 
 .post-card .contenu-preview {
-    color: #555;
+    color: #555555;
     font-size: 0.95rem;
+    line-height: 1.7;
     max-height: 70px;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: 'Georgia', serif;
 }
 
 .post-card .meta {
-    margin-top: 14px;
+    margin-top: 15px;
     font-size: 0.8rem;
-    color: #aaa;
+    color: #aaaaaa;
     border-top: 1px solid #f0f0f0;
-    padding-top: 10px;
+    padding-top: 12px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
 }
 
-/* ===== PAGE D'UN POST ===== */
+/* ============================================================
+   7. PAGE DE LECTURE
+   ============================================================ */
+
 #postContent {
-    background: #fff;
-    border: 1px solid #e8e8e8;
+    background: #ffffff;
     border-radius: 12px;
-    padding: 40px 45px;
+    padding: 50px 55px;
     margin-top: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e8e8e8;
+    line-height: 1.9;
+    transition: all 0.3s ease;
 }
 
 #postContent .btn-retour {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     background: transparent;
-    border: 1px solid #ddd;
-    padding: 6px 18px;
+    color: #888888;
+    border: 1px solid #e8e8e8;
+    padding: 8px 18px;
     border-radius: 30px;
-    font-family: inherit;
-    font-size: 14px;
-    color: #666;
     cursor: pointer;
-    transition: all 0.2s;
-    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
 }
 
 #postContent .btn-retour:hover {
-    background: #f5f5f5;
-    border-color: #aaa;
+    background: #f8f8f8;
+    border-color: #cccccc;
     color: #1a1a1a;
 }
 
 #postContent .meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 12px;
+    gap: 8px;
+    margin-bottom: 18px;
 }
 
 #postContent .meta .badge {
     display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
     padding: 3px 12px;
     border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
     font-family: 'Segoe UI', system-ui, sans-serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 #postContent .meta .badge.niveau {
     background: #1a1a1a;
-    color: #fff;
+    color: #ffffff;
 }
+
 #postContent .meta .badge.categorie {
-    background: #eaeaea;
-    color: #444;
+    background: #f0f0f0;
+    color: #444444;
 }
+
 #postContent .meta .badge.chapitre {
-    background: #f5f5f5;
-    color: #777;
+    background: #f8f8f8;
+    color: #888888;
     border: 1px solid #e8e8e8;
 }
 
 #postContent h1 {
-    font-size: 1.9rem;
+    font-family: 'Georgia', serif;
+    font-size: 2rem;
+    color: #1a1a1a;
+    margin: 10px 0 12px 0;
+    letter-spacing: -0.5px;
     border-bottom: none;
-    padding-bottom: 0;
-    margin: 6px 0 8px 0;
+}
+
+#postContent h1::after {
+    display: none;
 }
 
 #postContent .date {
-    color: #999;
+    color: #aaaaaa;
+    font-size: 0.9rem;
     font-style: italic;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-family: 'Georgia', serif;
+    transition: color 0.3s ease;
 }
 
 #postContent .contenu {
+    font-family: 'Georgia', 'Times New Roman', serif;
     font-size: 1.05rem;
-    line-height: 1.9;
+    line-height: 2;
     color: #1a1a1a;
     white-space: pre-wrap;
     text-align: justify;
+    hyphens: auto;
+    transition: color 0.3s ease;
 }
 
 #postContent .section {
-    margin: 30px 0;
-    padding: 20px 24px;
+    margin: 35px 0;
+    padding: 25px 30px;
     background: #f8f8f8;
-    border-left: 4px solid #888;
-    border-radius: 6px;
+    border-radius: 8px;
+    border-left: 4px solid #888888;
+    transition: all 0.3s ease;
 }
 
 #postContent .section h3 {
-    font-size: 1.15rem;
-    margin-bottom: 10px;
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
     color: #1a1a1a;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* ===== QUIZ INTERACTIF ===== */
+#postContent .section .contenu {
+    font-size: 1rem;
+    color: #333333;
+}
+
+#postContent .section[style*="border-left-color: #f39c12;"] {
+    border-left-color: #888888 !important;
+    background: #f8f8f8;
+}
+
+/* ============================================================
+   8. QUIZ INTERACTIF
+   ============================================================ */
+
+.quiz-section {
+    border-left-color: #666666 !important;
+}
+
 .quiz-question {
-    background: #fff;
-    border: 1px solid #e8e8e8;
+    margin: 25px 0;
+    padding: 20px 25px;
+    background: #ffffff;
     border-radius: 8px;
-    padding: 18px 20px;
-    margin: 18px 0;
+    border: 1px solid #e8e8e8;
 }
 
 .quiz-question p {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #1a1a1a;
     font-weight: 600;
-    margin-bottom: 12px;
 }
 
 .quiz-reponses {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .quiz-btn {
     display: block;
     width: 100%;
     text-align: left;
-    padding: 10px 16px;
+    padding: 12px 18px;
     background: #f8f8f8;
     border: 2px solid #e8e8e8;
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
-    font-family: inherit;
     font-size: 0.95rem;
-    transition: all 0.2s;
+    font-family: 'Georgia', serif;
+    transition: all 0.25s ease;
+    color: #1a1a1a;
 }
 
 .quiz-btn:hover:not(:disabled) {
+    border-color: #888888;
     background: #f0f0f0;
-    border-color: #aaa;
     transform: translateX(4px);
 }
 
 .quiz-btn:disabled {
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .quiz-btn[data-correct="true"]:disabled {
-    border-color: #2a7a2a;
-    background: #2a7a2a;
-    color: #fff;
+    border-color: #444444;
+    background: #333333;
+    color: #ffffff;
 }
 
 .quiz-btn:not([data-correct="true"]):disabled {
-    border-color: #8a2a2a;
-    background: #8a2a2a;
-    color: #fff;
+    border-color: #552222;
+    background: #442222;
+    color: #ffffff;
 }
 
 .quiz-feedback {
-    margin-top: 12px;
-    padding: 8px 14px;
-    background: #f5f5f5;
-    border-radius: 6px;
+    margin-top: 14px;
+    font-size: 0.95rem;
     font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 6px;
+    background: #f8f8f8;
+    font-family: 'Georgia', serif;
 }
 
-/* ===== QUESTIONS OUVERTES ===== */
+/* ============================================================
+   9. QUESTIONS OUVERTES
+   ============================================================ */
+
 .question-ouverte-reponse textarea {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-family: inherit;
+    font-family: 'Georgia', serif;
     font-size: 0.95rem;
     resize: vertical;
-    margin-top: 8px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 14px 16px;
+    width: 100%;
+    color: #1a1a1a;
+    margin-top: 10px;
 }
 
 .question-ouverte-reponse textarea:focus {
     outline: none;
-    border-color: #888;
+    border-color: #666666;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
 }
 
 .question-ouverte-reponse .btn-enregistrer {
     display: inline-block;
     background: transparent;
-    border: 1px solid #ddd;
-    padding: 6px 18px;
+    color: #888888;
+    border: 1px solid #dddddd;
+    padding: 8px 20px;
     border-radius: 30px;
-    font-family: inherit;
-    font-size: 0.9rem;
-    color: #666;
     cursor: pointer;
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
     margin-top: 10px;
-    transition: all 0.2s;
 }
 
 .question-ouverte-reponse .btn-enregistrer:hover {
-    background: #f5f5f5;
-    border-color: #aaa;
+    background: #f8f8f8;
+    border-color: #888888;
     color: #1a1a1a;
 }
 
 .question-ouverte-reponse .btn-enregistrer:disabled {
-    background: #1a1a1a;
-    color: #fff;
-    border-color: #1a1a1a;
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #333333;
+    color: #ffffff;
+    border-color: #333333;
 }
 
-/* ===== MESSAGE ===== */
+/* ============================================================
+   10. MESSAGE "AUCUN POST"
+   ============================================================ */
+
 .posts-grid p {
     text-align: center;
-    color: #aaa;
+    color: #bbbbbb;
+    font-family: 'Georgia', serif;
     font-style: italic;
-    padding: 40px 0;
+    font-size: 1.1rem;
+    padding: 50px 0;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ============================================================
+   11. RESPONSIVE
+   ============================================================ */
+
 @media (max-width: 768px) {
-    body {
-        padding: 12px;
+    .container {
+        margin: 15px auto;
+        padding: 0 12px;
     }
-    #postContent {
-        padding: 24px 18px;
+
+    h1 {
+        font-size: 1.6rem;
     }
+
     .filters {
+        padding: 12px 16px;
         flex-direction: column;
     }
+
     .filters select,
     .filters input {
         min-width: 100%;
+        width: 100%;
     }
-    h1 {
-        font-size: 1.6rem;
+
+    .post-card {
+        padding: 18px 20px;
+    }
+
+    #postContent {
+        padding: 25px 20px;
+    }
+
+    #postContent h1 {
+        font-size: 1.5rem;
+    }
+
+    #postContent .contenu {
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+
+    #postContent .section {
+        padding: 18px 16px;
+    }
+
+    .quiz-btn {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+    }
+
+    .quiz-question {
+        padding: 15px 16px;
     }
 }
 
 @media (max-width: 480px) {
-    #postContent {
-        padding: 16px 12px;
+    .container {
+        margin: 10px auto;
+        padding: 0 8px;
     }
-    .post-card {
-        padding: 16px 16px;
+
+    h1 {
+        font-size: 1.3rem;
+        flex-wrap: wrap;
     }
+
+    h1::after {
+        display: none;
+    }
+
     .post-card h3 {
         font-size: 1.1rem;
     }
+
+    #postContent {
+        padding: 18px 14px;
+    }
+
+    #postContent h1 {
+        font-size: 1.3rem;
+    }
+
+    .quiz-reponses {
+        gap: 6px;
+    }
+
     .quiz-btn {
         font-size: 0.85rem;
         padding: 8px 12px;
     }
+}
+
+/* ============================================================
+   12. SCROLLBAR PERSONNALISÉE
+   ============================================================ */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cccccc;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa;
+}
+
+/* ============================================================
+   13. ANIMATIONS D'ENTRÉE
+   ============================================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.post-card {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+.post-card:nth-child(2) {
+    animation-delay: 0.08s;
+}
+.post-card:nth-child(3) {
+    animation-delay: 0.16s;
+}
+.post-card:nth-child(4) {
+    animation-delay: 0.24s;
+}
+.post-card:nth-child(5) {
+    animation-delay: 0.32s;
+}
+.post-card:nth-child(6) {
+    animation-delay: 0.40s;
 }
