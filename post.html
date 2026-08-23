@@ -7,13 +7,56 @@
     <link rel="stylesheet" href="/qiraat/styles.css">
 </head>
 <body>
-    <div class="container">
-        <button onclick="window.location.href='/qiraat/'">← Retour</button>
-        <div id="postContent">
-            <p>Chargement...</p>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <div class="header-logo">
+                    <a href="/qiraat/"><strong>📖</strong> Liseuse</a>
+                </div>
+                <nav class="header-nav">
+                    <a href="/qiraat/" class="header-link">← Retour aux posts</a>
+                </nav>
+            </div>
         </div>
-    </div>
-    
+    </header>
+
+    <!-- ============================================================
+    PAGE PRINCIPALE
+    ============================================================ -->
+    <main class="page">
+
+        <!-- ============================================================
+        CONTENU DU POST
+        ============================================================ -->
+        <div id="postContent">
+            <p style="text-align:center;color:var(--text-muted);padding:40px 0;">Chargement...</p>
+        </div>
+
+        <!-- ============================================================
+        DEVISE
+        ============================================================ -->
+        <div class="devise">
+            « Lire, c'est voyager sans bouger. »
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="footer-devise">📖 La connaissance est une lumière</div>
+        <div class="footer-copy">&copy; 2026 · Tous droits réservés</div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
     <script src="/qiraat/script.js"></script>
+
 </body>
 </html>
