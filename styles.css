@@ -32,10 +32,9 @@ body {
 }
 
 /* ============================================================
-   2. MODE NUIT AUTO (DARK MODE)
+   2. MODE NUIT AUTO
    ============================================================ */
 
-/* Active automatiquement quand l'appareil est en mode sombre */
 @media (prefers-color-scheme: dark) {
     body {
         background: #0d0d0d;
@@ -80,12 +79,6 @@ body {
         color: #cccccc;
     }
 
-    .post-card .badge.chapitre {
-        background: #1a1a1a;
-        color: #888888;
-        border-color: #2a2a2a;
-    }
-
     #postContent {
         background: #1a1a1a;
         border-color: #2a2a2a;
@@ -110,12 +103,6 @@ body {
         color: #cccccc;
     }
 
-    #postContent .meta .badge.chapitre {
-        background: #1a1a1a;
-        color: #888888;
-        border-color: #2a2a2a;
-    }
-
     #postContent .date {
         color: #666666;
     }
@@ -131,11 +118,6 @@ body {
 
     #postContent .section .contenu {
         color: #c0c0c0;
-    }
-
-    #postContent .section[style*="border-left-color: #f39c12;"] {
-        background: #141414;
-        border-left-color: #888888 !important;
     }
 
     #postContent .btn-retour {
@@ -427,12 +409,6 @@ h1::after {
     color: #444444;
 }
 
-.post-card .badge.chapitre {
-    background: #f8f8f8;
-    color: #888888;
-    border: 1px solid #e8e8e8;
-}
-
 .post-card h3 {
     font-family: 'Georgia', serif;
     font-size: 1.3rem;
@@ -531,12 +507,6 @@ h1::after {
     color: #444444;
 }
 
-#postContent .meta .badge.chapitre {
-    background: #f8f8f8;
-    color: #888888;
-    border: 1px solid #e8e8e8;
-}
-
 #postContent h1 {
     font-family: 'Georgia', serif;
     font-size: 2rem;
@@ -592,11 +562,6 @@ h1::after {
 #postContent .section .contenu {
     font-size: 1rem;
     color: #333333;
-}
-
-#postContent .section[style*="border-left-color: #f39c12;"] {
-    border-left-color: #888888 !important;
-    background: #f8f8f8;
 }
 
 /* ============================================================
