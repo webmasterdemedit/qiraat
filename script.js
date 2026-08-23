@@ -62,7 +62,7 @@ function afficherPosts(posts) {
     }
     
     container.innerHTML = filtered.map(post => `
-        <div class="post-card" onclick="window.location.href='/qiraat/post.html?id=${encodeURIComponent(post.ID)}'">
+        <div class="post-card" onclick="window.location.href='/qiraat/post.html?id=${encodeURIComponent(post["Nom du fichier"])}'">
             <span class="badge niveau">Niveau ${post.Niveau}</span>
             <span class="badge categorie">${post.Catégorie}</span>
             <h3>${post.Chapitre}</h3>
