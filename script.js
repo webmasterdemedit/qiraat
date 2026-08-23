@@ -1,7 +1,7 @@
 // ============================================================
 // CONFIGURATION
 // ============================================================
-const API_URL = 'https://script.google.com/macros/s/AKfycbxjQMufVnpM8ZoNWNKZGkobFu75EYxYJ3rQCaFgnJ1fCpoMJpEFTFAzumoVx2bTXkkN/exec'; // À remplacer !
+const API_URL = 'https://script.google.com/macros/s/AKfycbxjQMufVnpM8ZoNWNKZGkobFu75EYxYJ3rQCaFgnJ1fCpoMJpEFTFAzumoVx2bTXkkN/exec';
 
 // ============================================================
 // CHARGEMENT DES POSTS
@@ -62,7 +62,7 @@ function afficherPosts(posts) {
     }
     
     container.innerHTML = filtered.map(post => `
-        <div class="post-card" onclick="window.location.href='/post.html?id=${encodeURIComponent(post.ID)}'">
+        <div class="post-card" onclick="window.location.href='/qiraat/post.html?id=${encodeURIComponent(post.ID)}'">
             <span class="badge niveau">Niveau ${post.Niveau}</span>
             <span class="badge categorie">${post.Catégorie}</span>
             <h3>${post.Chapitre}</h3>
