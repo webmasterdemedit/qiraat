@@ -154,3 +154,94 @@ button {
 button:hover {
     background: #357abd;
 }
+
+/* ============================================================
+   QUIZ INTERACTIF
+   ============================================================ */
+
+.quiz-section {
+    border-left-color: #e67e22 !important;
+}
+
+.quiz-question {
+    margin: 25px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.quiz-question p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.quiz-reponses {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quiz-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 16px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    color: #333;
+}
+
+.quiz-btn:hover:not(:disabled) {
+    border-color: #4a90d9;
+    background: #f0f5ff;
+    transform: translateX(5px);
+}
+
+.quiz-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.quiz-btn[data-correct="true"]:disabled {
+    border-color: #50c878;
+    background: #50c878;
+    color: white;
+}
+
+.quiz-btn:not([data-correct="true"]):disabled {
+    border-color: #e74c3c;
+    background: #e74c3c;
+    color: white;
+}
+
+.quiz-feedback {
+    margin-top: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #f8f9fa;
+}
+
+/* Questions ouvertes */
+.question-ouverte-reponse textarea {
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s;
+}
+
+.question-ouverte-reponse textarea:focus {
+    outline: none;
+    border-color: #4a90d9;
+    box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.1);
+}
+
+.question-ouverte-reponse button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
