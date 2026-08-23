@@ -3,52 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Posts</title>
+    <title>📚 Mes Posts</title>
     <link rel="stylesheet" href="/qiraat/styles.css">
 </head>
 <body>
-
-    <!-- ============================================================
-    HEADER
-    ============================================================ -->
-    <header class="site-header">
-        <div class="header-inner">
-            <div class="header-left">
-                <div class="header-logo">
-                    <a href="/qiraat/"><strong>📖</strong> Liseuse</a>
-                </div>
-                <nav class="header-nav">
-                    <a href="/qiraat/" class="header-link active">Posts</a>
-                </nav>
-            </div>
-            <div class="header-right">
-                <!-- Tu peux ajouter des boutons ici si besoin -->
-            </div>
-        </div>
-    </header>
-
-    <!-- ============================================================
-    PAGE PRINCIPALE
-    ============================================================ -->
-    <main class="page">
-
-        <!-- ============================================================
-        HERO
-        ============================================================ -->
-        <section class="hero">
-            <div class="logo">
-                <strong>📚</strong> Mes Posts
-            </div>
-            <p class="sous-titre">Apprendre à son rythme</p>
-            <p class="description">
-                Retrouve ici tous tes posts, organisés par niveau et par catégorie.
-                Clique sur une carte pour lire le contenu complet.
-            </p>
-        </section>
-
-        <!-- ============================================================
-        FILTRES
-        ============================================================ -->
+    <div class="container">
+        <h1>📚 Mes Posts</h1>
+        <p class="sous-titre-page">Retrouvez tous vos articles classés par niveau et catégorie</p>
+        
+        <!-- Filtres -->
         <div class="filters">
             <select id="niveauFilter">
                 <option value="">Tous les niveaux</option>
@@ -58,35 +21,16 @@
             </select>
             <input type="text" id="searchInput" placeholder="🔍 Rechercher un post...">
         </div>
-
-        <!-- ============================================================
-        GRILLE DES POSTS
-        ============================================================ -->
-        <div class="grille" id="postsList">
-            <p style="text-align:center;color:var(--text-muted);padding:40px 0;">Chargement des posts...</p>
+        
+        <!-- Liste des posts -->
+        <div id="postsList" class="posts-grid">
+            <div class="loader">
+                <div class="spinner"></div>
+                <p>Chargement des posts...</p>
+            </div>
         </div>
-
-        <!-- ============================================================
-        DEVISE (footer interne)
-        ============================================================ -->
-        <div class="devise">
-            « Lire, c'est voyager sans bouger. »
-        </div>
-
-    </main>
-
-    <!-- ============================================================
-    FOOTER
-    ============================================================ -->
-    <footer class="site-footer">
-        <div class="footer-devise">📖 La connaissance est une lumière</div>
-        <div class="footer-copy">&copy; 2026 · Tous droits réservés</div>
-    </footer>
-
-    <!-- ============================================================
-    SCRIPTS
-    ============================================================ -->
+    </div>
+    
     <script src="/qiraat/script.js"></script>
-
 </body>
 </html>
