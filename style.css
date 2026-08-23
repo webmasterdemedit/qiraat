@@ -1,5 +1,5 @@
 /* ============================================================
-   DESIGN LISEUSE - STYLE COMPLET
+   DESIGN LISEUSE - NOIR & BLANC AVEC MODE NUIT
    ============================================================ */
 
 /* ============================================================
@@ -14,17 +14,15 @@
 
 body {
     font-family: 'Georgia', 'Times New Roman', serif;
-    background: #f5f0eb;
+    background: #ffffff;
     padding: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #1a1a1a;
+    transition: background 0.3s ease, color 0.3s ease;
 }
-
-/* ============================================================
-   2. CONTENEUR PRINCIPAL (EFFET LIVRE)
-   ============================================================ */
 
 .container {
     max-width: 900px;
@@ -34,40 +32,283 @@ body {
 }
 
 /* ============================================================
-   3. PAGE D'ACCUEIL (BIBLIOTHÈQUE)
+   2. MODE NUIT AUTO (DARK MODE)
    ============================================================ */
 
-/* En-tête */
+/* Active automatiquement quand l'appareil est en mode sombre */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #0d0d0d;
+        color: #e8e8e8;
+    }
+
+    .post-card {
+        background: #1a1a1a;
+        border-color: #2a2a2a;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .post-card::before {
+        background: linear-gradient(to bottom, #666666, #333333);
+    }
+
+    .post-card:hover {
+        border-color: #555555;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .post-card h3 {
+        color: #e8e8e8;
+    }
+
+    .post-card .contenu-preview {
+        color: #aaaaaa;
+    }
+
+    .post-card .meta {
+        border-top-color: #2a2a2a;
+        color: #777777;
+    }
+
+    .post-card .badge.niveau {
+        background: #e8e8e8;
+        color: #0d0d0d;
+    }
+
+    .post-card .badge.categorie {
+        background: #2a2a2a;
+        color: #cccccc;
+    }
+
+    .post-card .badge.chapitre {
+        background: #1a1a1a;
+        color: #888888;
+        border-color: #2a2a2a;
+    }
+
+    #postContent {
+        background: #1a1a1a;
+        border-color: #2a2a2a;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    #postContent h1 {
+        color: #e8e8e8;
+    }
+
+    #postContent .contenu {
+        color: #d0d0d0;
+    }
+
+    #postContent .meta .badge.niveau {
+        background: #e8e8e8;
+        color: #0d0d0d;
+    }
+
+    #postContent .meta .badge.categorie {
+        background: #2a2a2a;
+        color: #cccccc;
+    }
+
+    #postContent .meta .badge.chapitre {
+        background: #1a1a1a;
+        color: #888888;
+        border-color: #2a2a2a;
+    }
+
+    #postContent .date {
+        color: #666666;
+    }
+
+    #postContent .section {
+        background: #141414;
+        border-left-color: #555555;
+    }
+
+    #postContent .section h3 {
+        color: #e8e8e8;
+    }
+
+    #postContent .section .contenu {
+        color: #c0c0c0;
+    }
+
+    #postContent .section[style*="border-left-color: #f39c12;"] {
+        background: #141414;
+        border-left-color: #888888 !important;
+    }
+
+    #postContent .btn-retour {
+        color: #999999;
+        border-color: #2a2a2a;
+    }
+
+    #postContent .btn-retour:hover {
+        background: #2a2a2a;
+        border-color: #555555;
+        color: #e8e8e8;
+    }
+
+    .filters {
+        background: #141414;
+        border-color: #2a2a2a;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .filters select,
+    .filters input {
+        background: #1a1a1a;
+        border-color: #333333;
+        color: #e8e8e8;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    }
+
+    .filters select option {
+        background: #1a1a1a;
+        color: #e8e8e8;
+    }
+
+    .filters select:focus,
+    .filters input:focus {
+        border-color: #666666;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+    }
+
+    .filters input::placeholder {
+        color: #555555;
+    }
+
+    .quiz-question {
+        background: #141414;
+        border-color: #2a2a2a;
+    }
+
+    .quiz-question p {
+        color: #e8e8e8;
+    }
+
+    .quiz-btn {
+        background: #1a1a1a;
+        border-color: #333333;
+        color: #d0d0d0;
+    }
+
+    .quiz-btn:hover:not(:disabled) {
+        border-color: #666666;
+        background: #2a2a2a;
+    }
+
+    .quiz-btn[data-correct="true"]:disabled {
+        border-color: #555555;
+        background: #333333;
+        color: #e8e8e8;
+    }
+
+    .quiz-btn:not([data-correct="true"]):disabled {
+        border-color: #553333;
+        background: #332222;
+        color: #e8e8e8;
+    }
+
+    .quiz-feedback {
+        background: #141414;
+        color: #e8e8e8;
+    }
+
+    .question-ouverte-reponse textarea {
+        background: #1a1a1a;
+        border-color: #333333;
+        color: #e8e8e8;
+    }
+
+    .question-ouverte-reponse textarea:focus {
+        border-color: #666666;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+    }
+
+    .question-ouverte-reponse .btn-enregistrer {
+        color: #999999;
+        border-color: #333333;
+    }
+
+    .question-ouverte-reponse .btn-enregistrer:hover {
+        background: #2a2a2a;
+        border-color: #555555;
+        color: #e8e8e8;
+    }
+
+    .question-ouverte-reponse .btn-enregistrer:disabled {
+        background: #333333;
+        border-color: #333333;
+        color: #999999;
+    }
+
+    .posts-grid p {
+        color: #555555;
+    }
+
+    h1 {
+        color: #e8e8e8;
+    }
+
+    h1::after {
+        background: linear-gradient(to right, #333333, transparent);
+    }
+
+    .sous-titre {
+        color: #666666;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #141414;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #333333;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #444444;
+    }
+}
+
+/* ============================================================
+   3. STYLES DE BASE
+   ============================================================ */
+
 h1 {
     font-family: 'Georgia', serif;
     font-weight: 700;
     font-size: 2.2rem;
-    color: #2c1810;
+    color: #1a1a1a;
     margin-bottom: 10px;
     letter-spacing: -0.5px;
     display: flex;
     align-items: center;
     gap: 12px;
+    transition: color 0.3s ease;
 }
 
 h1::after {
     content: '';
     flex: 1;
-    height: 2px;
-    background: linear-gradient(to right, #c4a882, transparent);
+    height: 1px;
+    background: linear-gradient(to right, #cccccc, transparent);
     margin-left: 15px;
+    transition: background 0.3s ease;
 }
 
 .sous-titre {
-    color: #8b7355;
+    color: #888888;
     font-size: 0.95rem;
     font-style: italic;
     margin-bottom: 30px;
     font-family: 'Georgia', serif;
+    transition: color 0.3s ease;
 }
 
 /* ============================================================
-   4. FILTRES (LISEUSE)
+   4. FILTRES
    ============================================================ */
 
 .filters {
@@ -75,28 +316,28 @@ h1::after {
     gap: 12px;
     margin-bottom: 35px;
     flex-wrap: wrap;
-    background: #faf8f5;
+    background: #f8f8f8;
     padding: 15px 20px;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
-    border: 1px solid #ede7e0;
+    border-radius: 12px;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s ease;
 }
 
 .filters select,
 .filters input {
     padding: 10px 16px;
-    border: 1px solid #ddd6ce;
-    border-radius: 10px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
     font-size: 14px;
-    background: white;
+    background: #ffffff;
     font-family: 'Georgia', serif;
-    color: #3d2b1f;
+    color: #1a1a1a;
     transition: all 0.3s ease;
     flex: 1;
     min-width: 150px;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b7355' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     cursor: pointer;
@@ -105,8 +346,8 @@ h1::after {
 .filters select:focus,
 .filters input:focus {
     outline: none;
-    border-color: #b8956e;
-    box-shadow: 0 0 0 3px rgba(184, 149, 110, 0.15);
+    border-color: #666666;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
 .filters input {
@@ -116,12 +357,12 @@ h1::after {
 }
 
 .filters input::placeholder {
-    color: #b8a99a;
+    color: #bbbbbb;
     font-style: italic;
 }
 
 /* ============================================================
-   5. GRILLE DES POSTS (ÉTAGÈRES)
+   5. GRILLE DES POSTS
    ============================================================ */
 
 .posts-grid {
@@ -131,17 +372,17 @@ h1::after {
 }
 
 /* ============================================================
-   6. CARTE D'UN POST (DOS DE LIVRE)
+   6. CARTE D'UN POST
    ============================================================ */
 
 .post-card {
-    background: white;
-    border-radius: 16px;
+    background: #ffffff;
+    border-radius: 12px;
     padding: 25px 30px;
-    box-shadow: 0 4px 16px rgba(44, 24, 16, 0.08);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
     cursor: pointer;
-    border: 1px solid #ede7e0;
+    border: 1px solid #e8e8e8;
     position: relative;
     overflow: hidden;
 }
@@ -151,57 +392,59 @@ h1::after {
     position: absolute;
     top: 0;
     left: 0;
-    width: 5px;
+    width: 4px;
     height: 100%;
-    background: linear-gradient(to bottom, #b8956e, #8b7355);
-    border-radius: 16px 0 0 16px;
+    background: linear-gradient(to bottom, #555555, #999999);
+    border-radius: 12px 0 0 12px;
+    transition: background 0.3s ease;
 }
 
 .post-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(44, 24, 16, 0.12);
-    border-color: #c4a882;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+    border-color: #cccccc;
 }
 
 .post-card .badge {
     display: inline-block;
-    padding: 4px 14px;
+    padding: 3px 12px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     font-family: 'Segoe UI', system-ui, sans-serif;
     margin: 3px 6px 3px 0;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .post-card .badge.niveau {
-    background: #2c1810;
-    color: #f5f0eb;
-    font-weight: 700;
+    background: #1a1a1a;
+    color: #ffffff;
 }
 
 .post-card .badge.categorie {
-    background: #ede7e0;
-    color: #5a3f2b;
+    background: #f0f0f0;
+    color: #444444;
 }
 
 .post-card .badge.chapitre {
-    background: #faf8f5;
-    color: #8b7355;
-    border: 1px solid #ede7e0;
+    background: #f8f8f8;
+    color: #888888;
+    border: 1px solid #e8e8e8;
 }
 
 .post-card h3 {
     font-family: 'Georgia', serif;
     font-size: 1.3rem;
-    color: #2c1810;
+    color: #1a1a1a;
     margin: 12px 0 8px 0;
     font-weight: 700;
     letter-spacing: -0.3px;
+    transition: color 0.3s ease;
 }
 
 .post-card .contenu-preview {
-    color: #5a4a3a;
+    color: #555555;
     font-size: 0.95rem;
     line-height: 1.7;
     max-height: 70px;
@@ -213,37 +456,38 @@ h1::after {
 .post-card .meta {
     margin-top: 15px;
     font-size: 0.8rem;
-    color: #b8a99a;
-    border-top: 1px solid #f0ece6;
+    color: #aaaaaa;
+    border-top: 1px solid #f0f0f0;
     padding-top: 12px;
     font-family: 'Segoe UI', system-ui, sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s ease;
 }
 
 /* ============================================================
-   7. PAGE DE LECTURE (POST INDIVIDUEL)
+   7. PAGE DE LECTURE
    ============================================================ */
 
 #postContent {
-    background: white;
-    border-radius: 16px;
+    background: #ffffff;
+    border-radius: 12px;
     padding: 50px 55px;
     margin-top: 20px;
-    box-shadow: 0 4px 24px rgba(44, 24, 16, 0.08);
-    border: 1px solid #ede7e0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e8e8e8;
     line-height: 1.9;
+    transition: all 0.3s ease;
 }
 
-/* Bouton retour */
 #postContent .btn-retour {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     background: transparent;
-    color: #8b7355;
-    border: 1px solid #ede7e0;
+    color: #888888;
+    border: 1px solid #e8e8e8;
     padding: 8px 18px;
     border-radius: 30px;
     cursor: pointer;
@@ -254,12 +498,11 @@ h1::after {
 }
 
 #postContent .btn-retour:hover {
-    background: #f5f0eb;
-    border-color: #c4a882;
-    color: #2c1810;
+    background: #f8f8f8;
+    border-color: #cccccc;
+    color: #1a1a1a;
 }
 
-/* Métadonnées du post */
 #postContent .meta {
     display: flex;
     flex-wrap: wrap;
@@ -269,35 +512,35 @@ h1::after {
 
 #postContent .meta .badge {
     display: inline-block;
-    padding: 4px 14px;
+    padding: 3px 12px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     font-family: 'Segoe UI', system-ui, sans-serif;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 #postContent .meta .badge.niveau {
-    background: #2c1810;
-    color: #f5f0eb;
+    background: #1a1a1a;
+    color: #ffffff;
 }
 
 #postContent .meta .badge.categorie {
-    background: #ede7e0;
-    color: #5a3f2b;
+    background: #f0f0f0;
+    color: #444444;
 }
 
 #postContent .meta .badge.chapitre {
-    background: #faf8f5;
-    color: #8b7355;
-    border: 1px solid #ede7e0;
+    background: #f8f8f8;
+    color: #888888;
+    border: 1px solid #e8e8e8;
 }
 
-/* Titre du post */
 #postContent h1 {
     font-family: 'Georgia', serif;
     font-size: 2rem;
-    color: #2c1810;
+    color: #1a1a1a;
     margin: 10px 0 12px 0;
     letter-spacing: -0.5px;
     border-bottom: none;
@@ -307,39 +550,39 @@ h1::after {
     display: none;
 }
 
-/* Date */
 #postContent .date {
-    color: #b8a99a;
+    color: #aaaaaa;
     font-size: 0.9rem;
     font-style: italic;
     margin-bottom: 25px;
     font-family: 'Georgia', serif;
+    transition: color 0.3s ease;
 }
 
-/* Contenu du texte */
 #postContent .contenu {
     font-family: 'Georgia', 'Times New Roman', serif;
     font-size: 1.05rem;
     line-height: 2;
-    color: #2c1810;
+    color: #1a1a1a;
     white-space: pre-wrap;
     text-align: justify;
     hyphens: auto;
+    transition: color 0.3s ease;
 }
 
-/* Sections spéciales */
 #postContent .section {
     margin: 35px 0;
     padding: 25px 30px;
-    background: #faf8f5;
-    border-radius: 12px;
-    border-left: 5px solid #b8956e;
+    background: #f8f8f8;
+    border-radius: 8px;
+    border-left: 4px solid #888888;
+    transition: all 0.3s ease;
 }
 
 #postContent .section h3 {
     font-family: 'Georgia', serif;
     font-size: 1.2rem;
-    color: #2c1810;
+    color: #1a1a1a;
     margin-bottom: 12px;
     display: flex;
     align-items: center;
@@ -348,41 +591,35 @@ h1::after {
 
 #postContent .section .contenu {
     font-size: 1rem;
-    color: #3d2b1f;
+    color: #333333;
 }
 
-/* Section Quiz */
-.quiz-section {
-    border-left-color: #e67e22 !important;
-}
-
-.quiz-section h3 {
-    color: #b86b1f !important;
-}
-
-/* Section Mémo */
 #postContent .section[style*="border-left-color: #f39c12;"] {
-    border-left-color: #d4a017 !important;
-    background: #fdfbf7;
+    border-left-color: #888888 !important;
+    background: #f8f8f8;
 }
 
 /* ============================================================
-   8. QUIZ INTERACTIF (LISEUSE)
+   8. QUIZ INTERACTIF
    ============================================================ */
+
+.quiz-section {
+    border-left-color: #666666 !important;
+}
 
 .quiz-question {
     margin: 25px 0;
     padding: 20px 25px;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid #ede7e0;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e8e8e8;
 }
 
 .quiz-question p {
     font-family: 'Georgia', serif;
     font-size: 1rem;
     margin-bottom: 15px;
-    color: #2c1810;
+    color: #1a1a1a;
     font-weight: 600;
 }
 
@@ -397,19 +634,19 @@ h1::after {
     width: 100%;
     text-align: left;
     padding: 12px 18px;
-    background: #faf8f5;
-    border: 2px solid #ede7e0;
-    border-radius: 10px;
+    background: #f8f8f8;
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 0.95rem;
     font-family: 'Georgia', serif;
     transition: all 0.25s ease;
-    color: #2c1810;
+    color: #1a1a1a;
 }
 
 .quiz-btn:hover:not(:disabled) {
-    border-color: #b8956e;
-    background: #f5f0eb;
+    border-color: #888888;
+    background: #f0f0f0;
     transform: translateX(4px);
 }
 
@@ -419,15 +656,15 @@ h1::after {
 }
 
 .quiz-btn[data-correct="true"]:disabled {
-    border-color: #50c878;
-    background: #50c878;
-    color: white;
+    border-color: #444444;
+    background: #333333;
+    color: #ffffff;
 }
 
 .quiz-btn:not([data-correct="true"]):disabled {
-    border-color: #e74c3c;
-    background: #e74c3c;
-    color: white;
+    border-color: #552222;
+    background: #442222;
+    color: #ffffff;
 }
 
 .quiz-feedback {
@@ -435,8 +672,8 @@ h1::after {
     font-size: 0.95rem;
     font-weight: 600;
     padding: 10px 16px;
-    border-radius: 8px;
-    background: #faf8f5;
+    border-radius: 6px;
+    background: #f8f8f8;
     font-family: 'Georgia', serif;
 }
 
@@ -448,27 +685,27 @@ h1::after {
     font-family: 'Georgia', serif;
     font-size: 0.95rem;
     resize: vertical;
-    transition: border-color 0.3s ease;
-    background: white;
-    border: 1px solid #ddd6ce;
-    border-radius: 10px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
     padding: 14px 16px;
     width: 100%;
-    color: #2c1810;
+    color: #1a1a1a;
     margin-top: 10px;
 }
 
 .question-ouverte-reponse textarea:focus {
     outline: none;
-    border-color: #b8956e;
-    box-shadow: 0 0 0 3px rgba(184, 149, 110, 0.12);
+    border-color: #666666;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
 }
 
 .question-ouverte-reponse .btn-enregistrer {
     display: inline-block;
     background: transparent;
-    color: #8b7355;
-    border: 1px solid #ddd6ce;
+    color: #888888;
+    border: 1px solid #dddddd;
     padding: 8px 20px;
     border-radius: 30px;
     cursor: pointer;
@@ -479,17 +716,17 @@ h1::after {
 }
 
 .question-ouverte-reponse .btn-enregistrer:hover {
-    background: #f5f0eb;
-    border-color: #b8956e;
-    color: #2c1810;
+    background: #f8f8f8;
+    border-color: #888888;
+    color: #1a1a1a;
 }
 
 .question-ouverte-reponse .btn-enregistrer:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    background: #50c878;
-    color: white;
-    border-color: #50c878;
+    background: #333333;
+    color: #ffffff;
+    border-color: #333333;
 }
 
 /* ============================================================
@@ -498,7 +735,7 @@ h1::after {
 
 .posts-grid p {
     text-align: center;
-    color: #b8a99a;
+    color: #bbbbbb;
     font-family: 'Georgia', serif;
     font-style: italic;
     font-size: 1.1rem;
@@ -599,25 +836,25 @@ h1::after {
 }
 
 /* ============================================================
-   12. SCROLLBAR PERSONNALISÉE (LISEUSE)
+   12. SCROLLBAR PERSONNALISÉE
    ============================================================ */
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f5f0eb;
+    background: #f0f0f0;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #c4a882;
+    background: #cccccc;
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #b8956e;
+    background: #aaaaaa;
 }
 
 /* ============================================================
@@ -627,7 +864,7 @@ h1::after {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(16px);
     }
     to {
         opacity: 1;
