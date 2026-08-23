@@ -1,3 +1,11 @@
+/* ============================================================
+   DESIGN LISEUSE - STYLE COMPLET
+   ============================================================ */
+
+/* ============================================================
+   1. RÉINITIALISATION
+   ============================================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,175 +13,377 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f5f5f5;
-    padding: 20px;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #f5f0eb;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+/* ============================================================
+   2. CONTENEUR PRINCIPAL (EFFET LIVRE)
+   ============================================================ */
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 900px;
+    width: 100%;
+    margin: 30px auto;
+    padding: 0 20px;
 }
 
+/* ============================================================
+   3. PAGE D'ACCUEIL (BIBLIOTHÈQUE)
+   ============================================================ */
+
+/* En-tête */
 h1 {
-    color: #333;
-    margin-bottom: 30px;
+    font-family: 'Georgia', serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #2c1810;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-/* Filtres */
+h1::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(to right, #c4a882, transparent);
+    margin-left: 15px;
+}
+
+.sous-titre {
+    color: #8b7355;
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-bottom: 30px;
+    font-family: 'Georgia', serif;
+}
+
+/* ============================================================
+   4. FILTRES (LISEUSE)
+   ============================================================ */
+
 .filters {
     display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 12px;
+    margin-bottom: 35px;
     flex-wrap: wrap;
+    background: #faf8f5;
+    padding: 15px 20px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+    border: 1px solid #ede7e0;
 }
 
-.filters select, .filters input {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+.filters select,
+.filters input {
+    padding: 10px 16px;
+    border: 1px solid #ddd6ce;
+    border-radius: 10px;
     font-size: 14px;
     background: white;
-}
-
-.filters input {
+    font-family: 'Georgia', serif;
+    color: #3d2b1f;
+    transition: all 0.3s ease;
     flex: 1;
-    min-width: 200px;
-}
-
-/* Grille des posts */
-.posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.post-card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    min-width: 150px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b7355' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
     cursor: pointer;
 }
 
+.filters select:focus,
+.filters input:focus {
+    outline: none;
+    border-color: #b8956e;
+    box-shadow: 0 0 0 3px rgba(184, 149, 110, 0.15);
+}
+
+.filters input {
+    background-image: none;
+    flex: 2;
+    min-width: 200px;
+}
+
+.filters input::placeholder {
+    color: #b8a99a;
+    font-style: italic;
+}
+
+/* ============================================================
+   5. GRILLE DES POSTS (ÉTAGÈRES)
+   ============================================================ */
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* ============================================================
+   6. CARTE D'UN POST (DOS DE LIVRE)
+   ============================================================ */
+
+.post-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 16px rgba(44, 24, 16, 0.08);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #ede7e0;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, #b8956e, #8b7355);
+    border-radius: 16px 0 0 16px;
+}
+
 .post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(44, 24, 16, 0.12);
+    border-color: #c4a882;
 }
 
 .post-card .badge {
     display: inline-block;
-    padding: 4px 12px;
+    padding: 4px 14px;
     border-radius: 20px;
     font-size: 12px;
-    font-weight: bold;
-    background: #e0e0e0;
-    color: #555;
-    margin: 5px 5px 5px 0;
+    font-weight: 600;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 3px 6px 3px 0;
+    letter-spacing: 0.3px;
 }
 
 .post-card .badge.niveau {
-    background: #4a90d9;
-    color: white;
+    background: #2c1810;
+    color: #f5f0eb;
+    font-weight: 700;
 }
 
 .post-card .badge.categorie {
-    background: #50c878;
-    color: white;
+    background: #ede7e0;
+    color: #5a3f2b;
+}
+
+.post-card .badge.chapitre {
+    background: #faf8f5;
+    color: #8b7355;
+    border: 1px solid #ede7e0;
 }
 
 .post-card h3 {
-    margin: 15px 0 10px 0;
-    color: #333;
-    font-size: 18px;
+    font-family: 'Georgia', serif;
+    font-size: 1.3rem;
+    color: #2c1810;
+    margin: 12px 0 8px 0;
+    font-weight: 700;
+    letter-spacing: -0.3px;
 }
 
 .post-card .contenu-preview {
-    color: #666;
-    font-size: 14px;
-    line-height: 1.6;
-    max-height: 80px;
+    color: #5a4a3a;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-height: 70px;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: 'Georgia', serif;
 }
 
 .post-card .meta {
     margin-top: 15px;
-    font-size: 12px;
-    color: #999;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
-}
-
-/* Page post individuel */
-#postContent {
-    background: white;
-    border-radius: 12px;
-    padding: 40px;
-    margin-top: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-
-#postContent .date {
-    color: #999;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-#postContent .contenu {
-    line-height: 1.8;
-    font-size: 16px;
-    color: #333;
-    white-space: pre-wrap;
-}
-
-#postContent .section {
-    margin: 30px 0;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    border-left: 4px solid #4a90d9;
-}
-
-#postContent .section h3 {
-    color: #4a90d9;
-    margin-bottom: 10px;
-}
-
-button {
-    background: #4a90d9;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-button:hover {
-    background: #357abd;
+    font-size: 0.8rem;
+    color: #b8a99a;
+    border-top: 1px solid #f0ece6;
+    padding-top: 12px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* ============================================================
-   QUIZ INTERACTIF
+   7. PAGE DE LECTURE (POST INDIVIDUEL)
    ============================================================ */
 
+#postContent {
+    background: white;
+    border-radius: 16px;
+    padding: 50px 55px;
+    margin-top: 20px;
+    box-shadow: 0 4px 24px rgba(44, 24, 16, 0.08);
+    border: 1px solid #ede7e0;
+    line-height: 1.9;
+}
+
+/* Bouton retour */
+#postContent .btn-retour {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: #8b7355;
+    border: 1px solid #ede7e0;
+    padding: 8px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+}
+
+#postContent .btn-retour:hover {
+    background: #f5f0eb;
+    border-color: #c4a882;
+    color: #2c1810;
+}
+
+/* Métadonnées du post */
+#postContent .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+#postContent .meta .badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    letter-spacing: 0.3px;
+}
+
+#postContent .meta .badge.niveau {
+    background: #2c1810;
+    color: #f5f0eb;
+}
+
+#postContent .meta .badge.categorie {
+    background: #ede7e0;
+    color: #5a3f2b;
+}
+
+#postContent .meta .badge.chapitre {
+    background: #faf8f5;
+    color: #8b7355;
+    border: 1px solid #ede7e0;
+}
+
+/* Titre du post */
+#postContent h1 {
+    font-family: 'Georgia', serif;
+    font-size: 2rem;
+    color: #2c1810;
+    margin: 10px 0 12px 0;
+    letter-spacing: -0.5px;
+    border-bottom: none;
+}
+
+#postContent h1::after {
+    display: none;
+}
+
+/* Date */
+#postContent .date {
+    color: #b8a99a;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 25px;
+    font-family: 'Georgia', serif;
+}
+
+/* Contenu du texte */
+#postContent .contenu {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.05rem;
+    line-height: 2;
+    color: #2c1810;
+    white-space: pre-wrap;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* Sections spéciales */
+#postContent .section {
+    margin: 35px 0;
+    padding: 25px 30px;
+    background: #faf8f5;
+    border-radius: 12px;
+    border-left: 5px solid #b8956e;
+}
+
+#postContent .section h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1.2rem;
+    color: #2c1810;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#postContent .section .contenu {
+    font-size: 1rem;
+    color: #3d2b1f;
+}
+
+/* Section Quiz */
 .quiz-section {
     border-left-color: #e67e22 !important;
 }
 
+.quiz-section h3 {
+    color: #b86b1f !important;
+}
+
+/* Section Mémo */
+#postContent .section[style*="border-left-color: #f39c12;"] {
+    border-left-color: #d4a017 !important;
+    background: #fdfbf7;
+}
+
+/* ============================================================
+   8. QUIZ INTERACTIF (LISEUSE)
+   ============================================================ */
+
 .quiz-question {
     margin: 25px 0;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
+    padding: 20px 25px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #ede7e0;
 }
 
 .quiz-question p {
-    font-size: 16px;
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
     margin-bottom: 15px;
-    color: #333;
+    color: #2c1810;
+    font-weight: 600;
 }
 
 .quiz-reponses {
@@ -186,25 +396,26 @@ button:hover {
     display: block;
     width: 100%;
     text-align: left;
-    padding: 12px 16px;
-    background: white;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    padding: 12px 18px;
+    background: #faf8f5;
+    border: 2px solid #ede7e0;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 14px;
-    transition: all 0.2s ease;
-    color: #333;
+    font-size: 0.95rem;
+    font-family: 'Georgia', serif;
+    transition: all 0.25s ease;
+    color: #2c1810;
 }
 
 .quiz-btn:hover:not(:disabled) {
-    border-color: #4a90d9;
-    background: #f0f5ff;
-    transform: translateX(5px);
+    border-color: #b8956e;
+    background: #f5f0eb;
+    transform: translateX(4px);
 }
 
 .quiz-btn:disabled {
     cursor: not-allowed;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .quiz-btn[data-correct="true"]:disabled {
@@ -220,28 +431,226 @@ button:hover {
 }
 
 .quiz-feedback {
-    margin-top: 12px;
-    font-size: 15px;
-    font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 6px;
-    background: #f8f9fa;
+    margin-top: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #faf8f5;
+    font-family: 'Georgia', serif;
 }
 
-/* Questions ouvertes */
+/* ============================================================
+   9. QUESTIONS OUVERTES
+   ============================================================ */
+
 .question-ouverte-reponse textarea {
-    font-family: inherit;
+    font-family: 'Georgia', serif;
+    font-size: 0.95rem;
     resize: vertical;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s ease;
+    background: white;
+    border: 1px solid #ddd6ce;
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 100%;
+    color: #2c1810;
+    margin-top: 10px;
 }
 
 .question-ouverte-reponse textarea:focus {
     outline: none;
-    border-color: #4a90d9;
-    box-shadow: 0 0 0 3px rgba(74, 144, 217, 0.1);
+    border-color: #b8956e;
+    box-shadow: 0 0 0 3px rgba(184, 149, 110, 0.12);
 }
 
-.question-ouverte-reponse button:disabled {
+.question-ouverte-reponse .btn-enregistrer {
+    display: inline-block;
+    background: transparent;
+    color: #8b7355;
+    border: 1px solid #ddd6ce;
+    padding: 8px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: 'Georgia', serif;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.question-ouverte-reponse .btn-enregistrer:hover {
+    background: #f5f0eb;
+    border-color: #b8956e;
+    color: #2c1810;
+}
+
+.question-ouverte-reponse .btn-enregistrer:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    background: #50c878;
+    color: white;
+    border-color: #50c878;
+}
+
+/* ============================================================
+   10. MESSAGE "AUCUN POST"
+   ============================================================ */
+
+.posts-grid p {
+    text-align: center;
+    color: #b8a99a;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    padding: 50px 0;
+}
+
+/* ============================================================
+   11. RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .container {
+        margin: 15px auto;
+        padding: 0 12px;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .filters {
+        padding: 12px 16px;
+        flex-direction: column;
+    }
+
+    .filters select,
+    .filters input {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .post-card {
+        padding: 18px 20px;
+    }
+
+    #postContent {
+        padding: 25px 20px;
+    }
+
+    #postContent h1 {
+        font-size: 1.5rem;
+    }
+
+    #postContent .contenu {
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+
+    #postContent .section {
+        padding: 18px 16px;
+    }
+
+    .quiz-btn {
+        font-size: 0.9rem;
+        padding: 10px 14px;
+    }
+
+    .quiz-question {
+        padding: 15px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 10px auto;
+        padding: 0 8px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+        flex-wrap: wrap;
+    }
+
+    h1::after {
+        display: none;
+    }
+
+    .post-card h3 {
+        font-size: 1.1rem;
+    }
+
+    #postContent {
+        padding: 18px 14px;
+    }
+
+    #postContent h1 {
+        font-size: 1.3rem;
+    }
+
+    .quiz-reponses {
+        gap: 6px;
+    }
+
+    .quiz-btn {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+}
+
+/* ============================================================
+   12. SCROLLBAR PERSONNALISÉE (LISEUSE)
+   ============================================================ */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f0eb;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c4a882;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b8956e;
+}
+
+/* ============================================================
+   13. ANIMATIONS D'ENTRÉE
+   ============================================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.post-card {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+.post-card:nth-child(2) {
+    animation-delay: 0.08s;
+}
+.post-card:nth-child(3) {
+    animation-delay: 0.16s;
+}
+.post-card:nth-child(4) {
+    animation-delay: 0.24s;
+}
+.post-card:nth-child(5) {
+    animation-delay: 0.32s;
+}
+.post-card:nth-child(6) {
+    animation-delay: 0.40s;
 }
