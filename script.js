@@ -16,7 +16,6 @@ async function chargerPosts() {
             // Page d'un post spécifique
             const params = new URLSearchParams(window.location.search);
             const id = params.get('id');
-            // ✅ CORRECTION 1 : Recherche avec "Nom du fichier"
             const post = posts.find(p => p["Nom du fichier"] === id);
             if (post) {
                 afficherPost(post);
@@ -43,7 +42,6 @@ async function chargerPosts() {
 function afficherPosts(posts) {
     const container = document.getElementById('postsList');
     
-    // Appliquer les filtres
     const niveau = document.getElementById('niveauFilter').value;
     const categorie = document.getElementById('categorieFilter').value;
     const search = document.getElementById('searchInput').value.toLowerCase();
@@ -98,10 +96,66 @@ function initialiserFiltres(posts) {
         categorieSelect.appendChild(option);
     });
     
-    // Écouteurs d'événements
     niveauSelect.addEventListener('change', () => afficherPosts(posts));
     categorieSelect.addEventListener('change', () => afficherPosts(posts));
     document.getElementById('searchInput').addEventListener('input', () => afficherPosts(posts));
+}
+
+// ============================================================
+// FONCTION POUR PARSER UN QUIZ
+// ============================================================
+
+function parserQuiz(texteQuiz) {
+    if (!texteQuiz || !texteQuiz.trim()) return null;
+    
+    // Séparer les lignes (chaque question)
+    const questions = texteQuiz.split('\n').filter(q => q.trim());
+    const resultats = [];
+    
+    for (let q of questions) {
+        // Extraire la question
+        const questionMatch = q.match(/^([^R]+?)\s*RV\./);
+        if (!questionMatch) continue;
+        
+        const question = questionMatch[1].trim();
+        const reste = q.substring(questionMatch[0].length - 3); // À partir de "RV."
+        
+        // Extraire les réponses
+        const reponses = [];
+        let bonneReponse = '';
+        
+        // Pattern pour trouver RV. et RF.
+        const rvMatch = reste.match(/RV\.\s*([^R]+?)(?=\s*RF\.|$)/);
+        if (rvMatch) {
+            bonneReponse = rvMatch[1].trim();
+        }
+        
+        // Trouver toutes les RF.
+        const rfMatches = reste.matchAll(/RF\.\s*([^R]+?)(?=\s*RF\.|$)/g);
+        const mauvaisesReponses = [];
+        for (const match of rfMatches) {
+            mauvaisesReponses.push(match[1].trim());
+        }
+        
+        // Mélanger les réponses
+        const toutesReponses = [
+            { texte: bonneReponse, estCorrecte: true },
+            ...mauvaisesReponses.map(r => ({ texte: r, estCorrecte: false }))
+        ];
+        
+        // Mélanger aléatoirement
+        for (let i = toutesReponses.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [toutesReponses[i], toutesReponses[j]] = [toutesReponses[j], toutesReponses[i]];
+        }
+        
+        resultats.push({
+            question: question,
+            reponses: toutesReponses
+        });
+    }
+    
+    return resultats;
 }
 
 // ============================================================
@@ -111,7 +165,6 @@ function initialiserFiltres(posts) {
 function afficherPost(post) {
     const container = document.getElementById('postContent');
     
-    // Formatage de la date
     const dateObj = new Date(post["Date post"]);
     const dateFormatee = dateObj.toLocaleDateString('fr-FR', {
         year: 'numeric',
@@ -130,23 +183,63 @@ function afficherPost(post) {
         <div class="contenu">${post.Contenu.replace(/\n/g, '<br>')}</div>
     `;
     
+    // ============================================================
+    // AFFICHAGE DU QUIZ INTERACTIF
+    // ============================================================
+    
     if (post.Quiz && post.Quiz.trim()) {
-        html += `
-            <div class="section">
-                <h3>📝 Quiz</h3>
-                <div class="contenu">${post.Quiz.replace(/\n/g, '<br>')}</div>
-            </div>
-        `;
+        const quizData = parserQuiz(post.Quiz);
+        
+        if (quizData && quizData.length > 0) {
+            html += `<div class="section quiz-section"><h3>📝 Quiz</h3>`;
+            
+            quizData.forEach((q, index) => {
+                html += `
+                    <div class="quiz-question" data-index="${index}">
+                        <p><strong>Question ${index + 1} :</strong> ${q.question}</p>
+                        <div class="quiz-reponses">
+                `;
+                
+                q.reponses.forEach((reponse, rIndex) => {
+                    const lettre = String.fromCharCode(65 + rIndex); // A, B, C, D
+                    html += `
+                        <button class="quiz-btn" data-correct="${reponse.estCorrecte}" onclick="repondreQuiz(this)">
+                            ${lettre}. ${reponse.texte}
+                        </button>
+                    `;
+                });
+                
+                html += `
+                        </div>
+                        <div class="quiz-feedback" id="feedback-${index}"></div>
+                    </div>
+                `;
+            });
+            
+            html += `</div>`;
+        }
     }
+    
+    // ============================================================
+    // QUESTIONS OUVERTES
+    // ============================================================
     
     if (post.Question_ouverte && post.Question_ouverte.trim()) {
         html += `
             <div class="section">
                 <h3>💭 Questions ouvertes</h3>
                 <div class="contenu">${post.Question_ouverte.replace(/\n/g, '<br>')}</div>
+                <div class="question-ouverte-reponse">
+                    <textarea placeholder="Écrivez votre réponse ici..." rows="4" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin-top:10px;font-family:inherit;"></textarea>
+                    <button onclick="this.previousElementSibling.disabled=true;this.textContent='✅ Réponse enregistrée';this.style.background='#50c878';" style="margin-top:10px;">💾 Enregistrer ma réponse</button>
+                </div>
             </div>
         `;
     }
+    
+    // ============================================================
+    // MÉMO
+    // ============================================================
     
     if (post.Mémo && post.Mémo.trim()) {
         html += `
@@ -158,6 +251,42 @@ function afficherPost(post) {
     }
     
     container.innerHTML = html;
+}
+
+// ============================================================
+// FONCTION POUR RÉPONDRE AU QUIZ
+// ============================================================
+
+function repondreQuiz(button) {
+    const estCorrect = button.dataset.correct === 'true';
+    const parent = button.closest('.quiz-question');
+    const feedback = parent.querySelector('.quiz-feedback');
+    const tousLesBoutons = parent.querySelectorAll('.quiz-btn');
+    
+    // Désactiver tous les boutons
+    tousLesBoutons.forEach(btn => btn.disabled = true);
+    
+    // Colorer les réponses
+    tousLesBoutons.forEach(btn => {
+        if (btn.dataset.correct === 'true') {
+            btn.style.background = '#50c878';
+            btn.style.color = 'white';
+        } else if (btn === button && !estCorrect) {
+            btn.style.background = '#e74c3c';
+            btn.style.color = 'white';
+        } else {
+            btn.style.opacity = '0.5';
+        }
+    });
+    
+    // Afficher le feedback
+    if (estCorrect) {
+        feedback.innerHTML = '✅ <strong>Correct !</strong> Bien joué ! 🎉';
+        feedback.style.color = '#27ae60';
+    } else {
+        feedback.innerHTML = '❌ <strong>Incorrect.</strong> La bonne réponse est en vert.';
+        feedback.style.color = '#e74c3c';
+    }
 }
 
 // ============================================================
