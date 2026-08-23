@@ -16,7 +16,8 @@ async function chargerPosts() {
             // Page d'un post spécifique
             const params = new URLSearchParams(window.location.search);
             const id = params.get('id');
-            const post = posts.find(p => p.ID === id);
+            // ✅ CORRECTION 1 : Recherche avec "Nom du fichier"
+            const post = posts.find(p => p["Nom du fichier"] === id);
             if (post) {
                 afficherPost(post);
             } else {
@@ -49,7 +50,7 @@ function afficherPosts(posts) {
     
     let filtered = posts.filter(post => {
         const matchNiveau = !niveau || post.Niveau == niveau;
-        const matchCategorie = !categorie || post.Catégorie === categorie;
+        const matchCategorie = !categorie || post.Cours === categorie;
         const matchSearch = !search || 
             post.Chapitre.toLowerCase().includes(search) || 
             post.Contenu.toLowerCase().includes(search);
@@ -64,10 +65,10 @@ function afficherPosts(posts) {
     container.innerHTML = filtered.map(post => `
         <div class="post-card" onclick="window.location.href='/qiraat/post.html?id=${encodeURIComponent(post["Nom du fichier"])}'">
             <span class="badge niveau">Niveau ${post.Niveau}</span>
-            <span class="badge categorie">${post.Catégorie}</span>
+            <span class="badge categorie">${post.Cours}</span>
             <h3>${post.Chapitre}</h3>
             <div class="contenu-preview">${post.Contenu.substring(0, 150)}...</div>
-            <div class="meta">📅 ${post.Date} • Ordre ${post.Ordre}</div>
+            <div class="meta">📅 ${new Date(post["Date post"]).toLocaleDateString('fr-FR')} • Chapitre ${post["Num chapitre"]}</div>
         </div>
     `).join('');
 }
@@ -78,7 +79,7 @@ function afficherPosts(posts) {
 
 function initialiserFiltres(posts) {
     const niveaux = [...new Set(posts.map(p => p.Niveau))].sort();
-    const categories = [...new Set(posts.map(p => p.Catégorie))];
+    const categories = [...new Set(posts.map(p => p.Cours))];
     
     const niveauSelect = document.getElementById('niveauFilter');
     const categorieSelect = document.getElementById('categorieFilter');
@@ -110,15 +111,23 @@ function initialiserFiltres(posts) {
 function afficherPost(post) {
     const container = document.getElementById('postContent');
     
+    // Formatage de la date
+    const dateObj = new Date(post["Date post"]);
+    const dateFormatee = dateObj.toLocaleDateString('fr-FR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    
     let html = `
         <div class="meta">
             <span class="badge niveau">Niveau ${post.Niveau}</span>
-            <span class="badge categorie">${post.Catégorie}</span>
-            <span class="badge">Ordre ${post.Ordre}</span>
+            <span class="badge categorie">${post.Cours}</span>
+            <span class="badge">Chapitre ${post["Num chapitre"]}</span>
         </div>
         <h1>${post.Chapitre}</h1>
-        <div class="date">📅 ${post.Date}</div>
-        <div class="contenu">${post.Contenu}</div>
+        <div class="date">📅 ${dateFormatee}</div>
+        <div class="contenu">${post.Contenu.replace(/\n/g, '<br>')}</div>
     `;
     
     if (post.Quiz && post.Quiz.trim()) {
@@ -139,11 +148,11 @@ function afficherPost(post) {
         `;
     }
     
-    if (post.Retenir && post.Retenir.trim()) {
+    if (post.Mémo && post.Mémo.trim()) {
         html += `
             <div class="section" style="border-left-color: #f39c12;">
                 <h3>⭐ À retenir</h3>
-                <div class="contenu">${post.Retenir.replace(/\n/g, '<br>')}</div>
+                <div class="contenu">${post.Mémo.replace(/\n/g, '<br>')}</div>
             </div>
         `;
     }
