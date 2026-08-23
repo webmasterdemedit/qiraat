@@ -1,9 +1,85 @@
 /* ============================================================
-   DESIGN LISEUSE - NOIR & BLANC AVEC MODE NUIT
+   THEME - VRAIE LISEUSE (papier + confort de lecture)
+   Adapté pour votre site
    ============================================================ */
 
+/* ===== VARIABLES ===== */
+:root {
+  /* Papier */
+  --bg-primary: #f5efe6;
+  --bg-secondary: #f0e9df;
+  --bg-card: #faf6f0;
+  --bg-input: #fcf9f5;
+  --bg-hover: #ede6dc;
+  --bg-active: #e0d8cc;
+  --bg-selected: #e8e0d4;
+  
+  /* Encre */
+  --text-primary: #1e1a16;
+  --text-secondary: #5a524a;
+  --text-muted: #8a827a;
+  --text-light: #3d3732;
+  
+  /* Bordures ultra-fines */
+  --border-color: #d8d0c4;
+  --border-light: #e5ddd2;
+  --border-hover: #b8a898;
+  
+  /* Accents chauds pour surlignage */
+  --accent-green: #3a7a5a;
+  --accent-green-bg: #e8f0ea;
+  --accent-green-border: #2a6a4a;
+  --accent-red: #a05050;
+  --accent-red-bg: #f5e8e8;
+  --accent-red-border: #8a4040;
+  --accent-yellow: #c49a6a;
+  --accent-yellow-bg: #f5ede4;
+  
+  /* Rayons arrondis très doux */
+  --radius: 2px;
+  --radius-lg: 4px;
+  --radius-xl: 8px;
+  --radius-full: 20px;
+  
+  /* Polices */
+  --font-serif: 'Georgia', 'Times New Roman', 'Palatino', serif;
+  --font-sans: 'Inter', 'Segoe UI', -apple-system, sans-serif;
+  
+  /* Ombres subtiles pour l'effet papier */
+  --shadow-card: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-hover: 0 2px 4px rgba(0,0,0,0.06);
+}
+
 /* ============================================================
-   1. RÉINITIALISATION
+   MODE NUIT AUTO
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1a1612;
+    --bg-secondary: #221e1a;
+    --bg-card: #2a2520;
+    --bg-input: #2a2520;
+    --bg-hover: #332e28;
+    --bg-active: #3d3730;
+    --bg-selected: #332e28;
+    
+    --text-primary: #e8e0d8;
+    --text-secondary: #a09888;
+    --text-muted: #6a6258;
+    --text-light: #c8c0b8;
+    
+    --border-color: #3d3730;
+    --border-light: #4a443c;
+    --border-hover: #6a6258;
+    
+    --shadow-card: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow-hover: 0 2px 4px rgba(0,0,0,0.4);
+  }
+}
+
+/* ============================================================
+   BASE
    ============================================================ */
 
 * {
@@ -12,16 +88,25 @@
     box-sizing: border-box;
 }
 
+html, body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.8;
+}
+
 body {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    background: #ffffff;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #1a1a1a;
-    transition: background 0.3s ease, color 0.3s ease;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 17px;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -32,237 +117,14 @@ body {
 }
 
 /* ============================================================
-   2. MODE NUIT AUTO
-   ============================================================ */
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background: #0d0d0d;
-        color: #e8e8e8;
-    }
-
-    .post-card {
-        background: #1a1a1a;
-        border-color: #2a2a2a;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    }
-
-    .post-card::before {
-        background: linear-gradient(to bottom, #666666, #333333);
-    }
-
-    .post-card:hover {
-        border-color: #555555;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .post-card h3 {
-        color: #e8e8e8;
-    }
-
-    .post-card .contenu-preview {
-        color: #aaaaaa;
-    }
-
-    .post-card .meta {
-        border-top-color: #2a2a2a;
-        color: #777777;
-    }
-
-    .post-card .badge.niveau {
-        background: #e8e8e8;
-        color: #0d0d0d;
-    }
-
-    .post-card .badge.categorie {
-        background: #2a2a2a;
-        color: #cccccc;
-    }
-
-    #postContent {
-        background: #1a1a1a;
-        border-color: #2a2a2a;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    #postContent h1 {
-        color: #e8e8e8;
-    }
-
-    #postContent .contenu {
-        color: #d0d0d0;
-    }
-
-    #postContent .meta .badge.niveau {
-        background: #e8e8e8;
-        color: #0d0d0d;
-    }
-
-    #postContent .meta .badge.categorie {
-        background: #2a2a2a;
-        color: #cccccc;
-    }
-
-    #postContent .date {
-        color: #666666;
-    }
-
-    #postContent .section {
-        background: #141414;
-        border-left-color: #555555;
-    }
-
-    #postContent .section h3 {
-        color: #e8e8e8;
-    }
-
-    #postContent .section .contenu {
-        color: #c0c0c0;
-    }
-
-    #postContent .btn-retour {
-        color: #999999;
-        border-color: #2a2a2a;
-    }
-
-    #postContent .btn-retour:hover {
-        background: #2a2a2a;
-        border-color: #555555;
-        color: #e8e8e8;
-    }
-
-    .filters {
-        background: #141414;
-        border-color: #2a2a2a;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .filters select,
-    .filters input {
-        background: #1a1a1a;
-        border-color: #333333;
-        color: #e8e8e8;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-    }
-
-    .filters select option {
-        background: #1a1a1a;
-        color: #e8e8e8;
-    }
-
-    .filters select:focus,
-    .filters input:focus {
-        border-color: #666666;
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
-    }
-
-    .filters input::placeholder {
-        color: #555555;
-    }
-
-    .quiz-question {
-        background: #141414;
-        border-color: #2a2a2a;
-    }
-
-    .quiz-question p {
-        color: #e8e8e8;
-    }
-
-    .quiz-btn {
-        background: #1a1a1a;
-        border-color: #333333;
-        color: #d0d0d0;
-    }
-
-    .quiz-btn:hover:not(:disabled) {
-        border-color: #666666;
-        background: #2a2a2a;
-    }
-
-    .quiz-btn[data-correct="true"]:disabled {
-        border-color: #555555;
-        background: #333333;
-        color: #e8e8e8;
-    }
-
-    .quiz-btn:not([data-correct="true"]):disabled {
-        border-color: #553333;
-        background: #332222;
-        color: #e8e8e8;
-    }
-
-    .quiz-feedback {
-        background: #141414;
-        color: #e8e8e8;
-    }
-
-    .question-ouverte-reponse textarea {
-        background: #1a1a1a;
-        border-color: #333333;
-        color: #e8e8e8;
-    }
-
-    .question-ouverte-reponse textarea:focus {
-        border-color: #666666;
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
-    }
-
-    .question-ouverte-reponse .btn-enregistrer {
-        color: #999999;
-        border-color: #333333;
-    }
-
-    .question-ouverte-reponse .btn-enregistrer:hover {
-        background: #2a2a2a;
-        border-color: #555555;
-        color: #e8e8e8;
-    }
-
-    .question-ouverte-reponse .btn-enregistrer:disabled {
-        background: #333333;
-        border-color: #333333;
-        color: #999999;
-    }
-
-    .posts-grid p {
-        color: #555555;
-    }
-
-    h1 {
-        color: #e8e8e8;
-    }
-
-    h1::after {
-        background: linear-gradient(to right, #333333, transparent);
-    }
-
-    .sous-titre {
-        color: #666666;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: #141414;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: #333333;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: #444444;
-    }
-}
-
-/* ============================================================
-   3. STYLES DE BASE
+   EN-TÊTE
    ============================================================ */
 
 h1 {
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     font-weight: 700;
     font-size: 2.2rem;
-    color: #1a1a1a;
+    color: var(--text-primary);
     margin-bottom: 10px;
     letter-spacing: -0.5px;
     display: flex;
@@ -275,22 +137,22 @@ h1::after {
     content: '';
     flex: 1;
     height: 1px;
-    background: linear-gradient(to right, #cccccc, transparent);
+    background: linear-gradient(to right, var(--border-color), transparent);
     margin-left: 15px;
     transition: background 0.3s ease;
 }
 
 .sous-titre {
-    color: #888888;
+    color: var(--text-secondary);
     font-size: 0.95rem;
     font-style: italic;
     margin-bottom: 30px;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     transition: color 0.3s ease;
 }
 
 /* ============================================================
-   4. FILTRES
+   FILTRES
    ============================================================ */
 
 .filters {
@@ -298,28 +160,28 @@ h1::after {
     gap: 12px;
     margin-bottom: 35px;
     flex-wrap: wrap;
-    background: #f8f8f8;
+    background: var(--bg-secondary);
     padding: 15px 20px;
-    border-radius: 12px;
-    border: 1px solid #e8e8e8;
+    border-radius: var(--radius-xl);
+    border: 0.5px solid var(--border-color);
     transition: all 0.3s ease;
 }
 
 .filters select,
 .filters input {
     padding: 10px 16px;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
     font-size: 14px;
-    background: #ffffff;
-    font-family: 'Georgia', serif;
-    color: #1a1a1a;
+    background: var(--bg-input);
+    font-family: var(--font-serif);
+    color: var(--text-primary);
     transition: all 0.3s ease;
     flex: 1;
     min-width: 150px;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238a827a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     cursor: pointer;
@@ -328,8 +190,8 @@ h1::after {
 .filters select:focus,
 .filters input:focus {
     outline: none;
-    border-color: #666666;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    border-color: var(--border-hover);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
 }
 
 .filters input {
@@ -339,12 +201,12 @@ h1::after {
 }
 
 .filters input::placeholder {
-    color: #bbbbbb;
+    color: var(--text-muted);
     font-style: italic;
 }
 
 /* ============================================================
-   5. GRILLE DES POSTS
+   GRILLE DES POSTS
    ============================================================ */
 
 .posts-grid {
@@ -354,17 +216,17 @@ h1::after {
 }
 
 /* ============================================================
-   6. CARTE D'UN POST
+   CARTE D'UN POST
    ============================================================ */
 
 .post-card {
-    background: #ffffff;
-    border-radius: 12px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius);
     padding: 25px 30px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-card);
     transition: all 0.3s ease;
     cursor: pointer;
-    border: 1px solid #e8e8e8;
     position: relative;
     overflow: hidden;
 }
@@ -376,43 +238,44 @@ h1::after {
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(to bottom, #555555, #999999);
-    border-radius: 12px 0 0 12px;
+    background: linear-gradient(to bottom, var(--border-hover), var(--text-muted));
+    border-radius: var(--radius) 0 0 var(--radius);
     transition: background 0.3s ease;
 }
 
 .post-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-    border-color: #cccccc;
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-hover);
 }
 
 .post-card .badge {
     display: inline-block;
     padding: 3px 12px;
-    border-radius: 20px;
+    border-radius: var(--radius-full);
     font-size: 11px;
     font-weight: 600;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: var(--font-sans);
     margin: 3px 6px 3px 0;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
 .post-card .badge.niveau {
-    background: #1a1a1a;
-    color: #ffffff;
+    background: var(--text-primary);
+    color: var(--bg-primary);
 }
 
 .post-card .badge.categorie {
-    background: #f0f0f0;
-    color: #444444;
+    background: var(--bg-input);
+    color: var(--text-secondary);
+    border: 0.5px solid var(--border-color);
 }
 
 .post-card h3 {
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     font-size: 1.3rem;
-    color: #1a1a1a;
+    color: var(--text-primary);
     margin: 12px 0 8px 0;
     font-weight: 700;
     letter-spacing: -0.3px;
@@ -420,22 +283,22 @@ h1::after {
 }
 
 .post-card .contenu-preview {
-    color: #555555;
+    color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.7;
     max-height: 70px;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
 }
 
 .post-card .meta {
     margin-top: 15px;
     font-size: 0.8rem;
-    color: #aaaaaa;
-    border-top: 1px solid #f0f0f0;
+    color: var(--text-muted);
+    border-top: 0.5px solid var(--border-light);
     padding-top: 12px;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: var(--font-sans);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -443,16 +306,16 @@ h1::after {
 }
 
 /* ============================================================
-   7. PAGE DE LECTURE
+   PAGE DE LECTURE
    ============================================================ */
 
 #postContent {
-    background: #ffffff;
-    border-radius: 12px;
+    background: var(--bg-card);
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius);
     padding: 50px 55px;
     margin-top: 20px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    border: 1px solid #e8e8e8;
+    box-shadow: var(--shadow-card);
     line-height: 1.9;
     transition: all 0.3s ease;
 }
@@ -462,21 +325,21 @@ h1::after {
     align-items: center;
     gap: 8px;
     background: transparent;
-    color: #888888;
-    border: 1px solid #e8e8e8;
+    color: var(--text-secondary);
+    border: 0.5px solid var(--border-color);
     padding: 8px 18px;
-    border-radius: 30px;
+    border-radius: var(--radius-full);
     cursor: pointer;
     font-size: 14px;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     transition: all 0.3s ease;
     margin-bottom: 25px;
 }
 
 #postContent .btn-retour:hover {
-    background: #f8f8f8;
-    border-color: #cccccc;
-    color: #1a1a1a;
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
 }
 
 #postContent .meta {
@@ -489,28 +352,29 @@ h1::after {
 #postContent .meta .badge {
     display: inline-block;
     padding: 3px 12px;
-    border-radius: 20px;
+    border-radius: var(--radius-full);
     font-size: 11px;
     font-weight: 600;
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: var(--font-sans);
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
 #postContent .meta .badge.niveau {
-    background: #1a1a1a;
-    color: #ffffff;
+    background: var(--text-primary);
+    color: var(--bg-primary);
 }
 
 #postContent .meta .badge.categorie {
-    background: #f0f0f0;
-    color: #444444;
+    background: var(--bg-input);
+    color: var(--text-secondary);
+    border: 0.5px solid var(--border-color);
 }
 
 #postContent h1 {
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     font-size: 2rem;
-    color: #1a1a1a;
+    color: var(--text-primary);
     margin: 10px 0 12px 0;
     letter-spacing: -0.5px;
     border-bottom: none;
@@ -521,19 +385,19 @@ h1::after {
 }
 
 #postContent .date {
-    color: #aaaaaa;
+    color: var(--text-muted);
     font-size: 0.9rem;
     font-style: italic;
     margin-bottom: 25px;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     transition: color 0.3s ease;
 }
 
 #postContent .contenu {
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: var(--font-serif);
     font-size: 1.05rem;
     line-height: 2;
-    color: #1a1a1a;
+    color: var(--text-primary);
     white-space: pre-wrap;
     text-align: justify;
     hyphens: auto;
@@ -543,16 +407,16 @@ h1::after {
 #postContent .section {
     margin: 35px 0;
     padding: 25px 30px;
-    background: #f8f8f8;
-    border-radius: 8px;
-    border-left: 4px solid #888888;
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    border-left: 4px solid var(--border-hover);
     transition: all 0.3s ease;
 }
 
 #postContent .section h3 {
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     font-size: 1.2rem;
-    color: #1a1a1a;
+    color: var(--text-primary);
     margin-bottom: 12px;
     display: flex;
     align-items: center;
@@ -561,30 +425,30 @@ h1::after {
 
 #postContent .section .contenu {
     font-size: 1rem;
-    color: #333333;
+    color: var(--text-secondary);
 }
 
 /* ============================================================
-   8. QUIZ INTERACTIF
+   QUIZ INTERACTIF
    ============================================================ */
 
 .quiz-section {
-    border-left-color: #666666 !important;
+    border-left-color: var(--accent-yellow) !important;
 }
 
 .quiz-question {
     margin: 25px 0;
     padding: 20px 25px;
-    background: #ffffff;
-    border-radius: 8px;
-    border: 1px solid #e8e8e8;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 0.5px solid var(--border-color);
 }
 
 .quiz-question p {
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     font-size: 1rem;
     margin-bottom: 15px;
-    color: #1a1a1a;
+    color: var(--text-primary);
     font-weight: 600;
 }
 
@@ -599,19 +463,19 @@ h1::after {
     width: 100%;
     text-align: left;
     padding: 12px 18px;
-    background: #f8f8f8;
-    border: 2px solid #e8e8e8;
-    border-radius: 8px;
+    background: var(--bg-input);
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
     cursor: pointer;
     font-size: 0.95rem;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     transition: all 0.25s ease;
-    color: #1a1a1a;
+    color: var(--text-primary);
 }
 
 .quiz-btn:hover:not(:disabled) {
-    border-color: #888888;
-    background: #f0f0f0;
+    border-color: var(--border-hover);
+    background: var(--bg-hover);
     transform: translateX(4px);
 }
 
@@ -621,15 +485,15 @@ h1::after {
 }
 
 .quiz-btn[data-correct="true"]:disabled {
-    border-color: #444444;
-    background: #333333;
-    color: #ffffff;
+    border-color: var(--accent-green-border);
+    background: var(--accent-green);
+    color: var(--bg-primary);
 }
 
 .quiz-btn:not([data-correct="true"]):disabled {
-    border-color: #552222;
-    background: #442222;
-    color: #ffffff;
+    border-color: var(--accent-red-border);
+    background: var(--accent-red);
+    color: var(--bg-primary);
 }
 
 .quiz-feedback {
@@ -637,78 +501,125 @@ h1::after {
     font-size: 0.95rem;
     font-weight: 600;
     padding: 10px 16px;
-    border-radius: 6px;
-    background: #f8f8f8;
-    font-family: 'Georgia', serif;
+    border-radius: var(--radius);
+    background: var(--bg-secondary);
+    font-family: var(--font-serif);
 }
 
 /* ============================================================
-   9. QUESTIONS OUVERTES
+   QUESTIONS OUVERTES
    ============================================================ */
 
 .question-ouverte-reponse textarea {
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     font-size: 0.95rem;
     resize: vertical;
     transition: all 0.3s ease;
-    background: #ffffff;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
+    background: var(--bg-input);
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--radius-lg);
     padding: 14px 16px;
     width: 100%;
-    color: #1a1a1a;
+    color: var(--text-primary);
     margin-top: 10px;
 }
 
 .question-ouverte-reponse textarea:focus {
     outline: none;
-    border-color: #666666;
+    border-color: var(--border-hover);
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.04);
 }
 
 .question-ouverte-reponse .btn-enregistrer {
     display: inline-block;
     background: transparent;
-    color: #888888;
-    border: 1px solid #dddddd;
+    color: var(--text-secondary);
+    border: 0.5px solid var(--border-color);
     padding: 8px 20px;
-    border-radius: 30px;
+    border-radius: var(--radius-full);
     cursor: pointer;
     font-size: 0.9rem;
-    font-family: 'Georgia', serif;
+    font-family: var(--font-serif);
     transition: all 0.3s ease;
     margin-top: 10px;
 }
 
 .question-ouverte-reponse .btn-enregistrer:hover {
-    background: #f8f8f8;
-    border-color: #888888;
-    color: #1a1a1a;
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
+    color: var(--text-primary);
 }
 
 .question-ouverte-reponse .btn-enregistrer:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    background: #333333;
-    color: #ffffff;
-    border-color: #333333;
+    background: var(--accent-green);
+    color: var(--bg-primary);
+    border-color: var(--accent-green-border);
 }
 
 /* ============================================================
-   10. MESSAGE "AUCUN POST"
+   MESSAGE "AUCUN POST"
    ============================================================ */
 
 .posts-grid p {
     text-align: center;
-    color: #bbbbbb;
-    font-family: 'Georgia', serif;
+    color: var(--text-muted);
+    font-family: var(--font-serif);
     font-style: italic;
     font-size: 1.1rem;
     padding: 50px 0;
 }
 
 /* ============================================================
-   11. RESPONSIVE
+   SCROLLBAR PERSONNALISÉE
+   ============================================================ */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-hover);
+}
+
+/* ============================================================
+   ANIMATIONS D'ENTRÉE
+   ============================================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.post-card {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+.post-card:nth-child(2) { animation-delay: 0.08s; }
+.post-card:nth-child(3) { animation-delay: 0.16s; }
+.post-card:nth-child(4) { animation-delay: 0.24s; }
+.post-card:nth-child(5) { animation-delay: 0.32s; }
+.post-card:nth-child(6) { animation-delay: 0.40s; }
+
+/* ============================================================
+   RESPONSIVE
    ============================================================ */
 
 @media (max-width: 768px) {
@@ -798,61 +709,4 @@ h1::after {
         font-size: 0.85rem;
         padding: 8px 12px;
     }
-}
-
-/* ============================================================
-   12. SCROLLBAR PERSONNALISÉE
-   ============================================================ */
-
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #cccccc;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #aaaaaa;
-}
-
-/* ============================================================
-   13. ANIMATIONS D'ENTRÉE
-   ============================================================ */
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.post-card {
-    animation: fadeInUp 0.4s ease forwards;
-}
-
-.post-card:nth-child(2) {
-    animation-delay: 0.08s;
-}
-.post-card:nth-child(3) {
-    animation-delay: 0.16s;
-}
-.post-card:nth-child(4) {
-    animation-delay: 0.24s;
-}
-.post-card:nth-child(5) {
-    animation-delay: 0.32s;
-}
-.post-card:nth-child(6) {
-    animation-delay: 0.40s;
 }
