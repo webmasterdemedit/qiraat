@@ -7,10 +7,48 @@
     <link rel="stylesheet" href="/qiraat/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>📚 Mes Posts</h1>
-        
-        <!-- Filtres -->
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <div class="header-logo">
+                    <a href="/qiraat/"><strong>📖</strong> Liseuse</a>
+                </div>
+                <nav class="header-nav">
+                    <a href="/qiraat/" class="header-link active">Posts</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <!-- Tu peux ajouter des boutons ici si besoin -->
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    PAGE PRINCIPALE
+    ============================================================ -->
+    <main class="page">
+
+        <!-- ============================================================
+        HERO
+        ============================================================ -->
+        <section class="hero">
+            <div class="logo">
+                <strong>📚</strong> Mes Posts
+            </div>
+            <p class="sous-titre">Apprendre à son rythme</p>
+            <p class="description">
+                Retrouve ici tous tes posts, organisés par niveau et par catégorie.
+                Clique sur une carte pour lire le contenu complet.
+            </p>
+        </section>
+
+        <!-- ============================================================
+        FILTRES
+        ============================================================ -->
         <div class="filters">
             <select id="niveauFilter">
                 <option value="">Tous les niveaux</option>
@@ -18,15 +56,37 @@
             <select id="categorieFilter">
                 <option value="">Toutes les catégories</option>
             </select>
-            <input type="text" id="searchInput" placeholder="🔍 Rechercher...">
+            <input type="text" id="searchInput" placeholder="🔍 Rechercher un post...">
         </div>
-        
-        <!-- Liste des posts -->
-        <div id="postsList" class="posts-grid">
-            <p>Chargement des posts...</p>
+
+        <!-- ============================================================
+        GRILLE DES POSTS
+        ============================================================ -->
+        <div class="grille" id="postsList">
+            <p style="text-align:center;color:var(--text-muted);padding:40px 0;">Chargement des posts...</p>
         </div>
-    </div>
-    
+
+        <!-- ============================================================
+        DEVISE (footer interne)
+        ============================================================ -->
+        <div class="devise">
+            « Lire, c'est voyager sans bouger. »
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="footer-devise">📖 La connaissance est une lumière</div>
+        <div class="footer-copy">&copy; 2026 · Tous droits réservés</div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
     <script src="/qiraat/script.js"></script>
+
 </body>
 </html>
